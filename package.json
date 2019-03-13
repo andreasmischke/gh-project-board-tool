@@ -1,0 +1,10 @@
+{
+  "name": "gh-project-board-tool",
+  "version": "1.0.0",
+  "description": "GitHub Project Board Enhancer Bookmarklet",
+  "main": "dist/index.js",
+  "repository": "git@github.com:andreasmischke/gh-project-board-tool.git",
+  "author": "Andreas Mischke <andreas@mischke.me>",
+  "license": "MIT",
+  "private": false
+}
