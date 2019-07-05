@@ -6,5 +6,10 @@
   "repository": "git@github.com:andreasmischke/gh-project-board-tool.git",
   "author": "Andreas Mischke <andreas@mischke.me>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  }
 }
