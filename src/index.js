@@ -1,14 +1,13 @@
 import storage from "./storage";
 
 (function() {
-  const accessTokenKey = 'ACCESS_TOKEN';
   const namespace = "andreasmischke-gh-project-board-tool";
   const animationClassName = `${namespace}-A`;
-  const totalTaskPointsClassName = `${namespace}-T`;
-  const unestimatedTaskPointClassName = `${namespace}-U`;
-
+  const accessTokenKey = 'ACCESS_TOKEN';
   const runOnlyOnceMarker = `${namespace}-I`;
   const estimationButtonClassName = `${namespace}-E`;
+  const totalTaskPointsClassName = `${namespace}-T`;
+  const unestimatedTaskPointClassName = `${namespace}-U`;
 
   if (window[runOnlyOnceMarker]) {
     return;
@@ -181,6 +180,31 @@ import storage from "./storage";
   }
 
   window[runOnlyOnceMarker] = 1;
+
+  const styleElement = document.createElement("style");
+
+  styleElement.textContent = `
+    @keyframes custom-highlighter {
+      0% { background: none }
+      1% { background: transparent }
+      15% { background: #FFDC97 }
+      99% { background: transparent }
+      100% { background :none }
+    }
+    .${totalTaskPointsClassName} {
+      background: #2ecc71;
+      color: #eee;
+    }
+    .${unestimatedTaskPointClassName} {
+      background: #966;
+      color: #eee;
+      cursor:pointer
+    }
+    .${animationClassName} {
+      animation: custom-highlighter 3s
+    }`;
+
+  document.querySelector("head").appendChild(styleElement);
 
   const boardColumns = document.querySelectorAll(".project-column");
   [...boardColumns].forEach(column => {
