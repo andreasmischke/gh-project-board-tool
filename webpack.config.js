@@ -1,11 +1,12 @@
 const package = require('./package.json');
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: `${package.name}.js`,
+    filename: `content-script.js`,
     library: package.name,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -18,6 +19,12 @@ module.exports = {
       '.json',
     ],
   },
+  plugins: [
+    new CopyPlugin([
+      { from: 'manifest.json' },
+      { from: 'img/icon*.png' },
+    ]),
+  ],
   target: 'web',
   mode: 'production',
 };

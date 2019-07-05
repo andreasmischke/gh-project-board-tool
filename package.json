@@ -7,7 +7,12 @@
   "author": "Andreas Mischke <andreas@mischke.me>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "webpack",
+    "deploy": "webpack && rm -f gh-project-board-tool.zip && zip gh-project-board-tool.zip dist/* dist/img/*"
+  },
   "devDependencies": {
+    "copy-webpack-plugin": "^5.0.3",
     "prettier": "^1.18.2",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
