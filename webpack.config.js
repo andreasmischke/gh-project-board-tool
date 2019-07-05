@@ -23,6 +23,7 @@ module.exports = {
     new CopyPlugin([
       { from: 'manifest.json' },
       { from: 'img/icon*.png' },
+      { from: 'styles/*' },
     ]),
   ],
   target: 'web',

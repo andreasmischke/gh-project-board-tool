@@ -16,6 +16,9 @@
       "matches": [
         "https://github.com/*/*/projects/*"
       ],
+      "css": [
+        "styles/content-script.css"
+      ],
       "js": [
         "content-script.js"
       ]
