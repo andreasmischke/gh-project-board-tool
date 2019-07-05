@@ -1,7 +1,9 @@
+import storage from "./storage";
+
 (function() {
   const namespace = "andreasmischke-gh-project-board-tool";
   const animationClassName = `${namespace}-A`;
-  const localStorageAccessTokenKey = `${namespace}-token`;
+  const accessTokenKey = 'ACCESS_TOKEN';
   const runOnlyOnceMarker = `${namespace}-I`;
   const estimationButtonClassName = `${namespace}-E`;
   const totalTaskPointsClassName = `${namespace}-T`;
@@ -19,9 +21,9 @@
     return parseInt(matches[1]);
   }
 
-  function getAccessToken() {
-    const token = localStorage.getItem(localStorageAccessTokenKey);
-    if (token !== null) {
+  async function getAccessToken() {
+    const token = await storage.get(accessTokenKey);
+    if (token) {
       return token;
     }
 
@@ -30,7 +32,7 @@
       return null;
     }
 
-    localStorage.setItem(localStorageAccessTokenKey, newToken);
+    storage.set(accessTokenKey, newToken);
     return newToken;
   }
 
@@ -73,7 +75,7 @@
   }
 
   async function estimateTask(cardId) {
-    const accessToken = getAccessToken();
+    const accessToken = await getAccessToken();
     if (accessToken === null) {
       return;
     }
@@ -98,7 +100,7 @@
       newTitle = issueTitle.replace(/ \(\d+\)$/, estimation);
     }
 
-    const response = await patchIssueTitle(accessToken, issueUrl, newTitle);
+    await patchIssueTitle(accessToken, issueUrl, newTitle);
   }
 
   function updateColumnCounters(
